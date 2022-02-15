@@ -1,0 +1,56 @@
+img {
+  -webkit-animation: wiggleMore 3s infinite linear;
+          animation: wiggleMore 3s infinite linear;
+}
+
+@-webkit-keyframes wiggle {
+  0% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+}
+@-webkit-keyframes wiggleMore {
+  0% {
+    filter: blur(0);
+    transform: rotate(30deg);
+  }
+  50% {
+    filter: blur(3px);
+    transform: rotate(-30deg);
+  }
+  100% {
+    filter: blur(0);
+    transform: rotate(30deg);
+  }
+}
+@keyframes wiggleMore {
+  0% {
+    filter: blur(0);
+    transform: rotate(30deg);
+  }
+  50% {
+    filter: blur(3px);
+    transform: rotate(-30deg);
+  }
+  100% {
+    filter: blur(0);
+    transform: rotate(30deg);
+  }
+}/*# sourceMappingURL=index.css.map */

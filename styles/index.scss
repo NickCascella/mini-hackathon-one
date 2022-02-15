@@ -1,0 +1,186 @@
+@font-face {
+  font-family: "Pretendo";
+  src: url(/assets/Pretendo.ttf);
+}
+@keyframes pulse {
+  0% {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+  50% {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+}
+
+body {
+  margin: 0;
+  // overflow-y: hidden;
+}
+.background {
+  background-color: rgb(59, 98, 120);
+  background-image: url(/assets/background-top.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  padding: 16px;
+}
+
+.player-selector {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__top {
+    box-sizing: border-box;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  &__bottom {
+    box-sizing: border-box;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__versus {
+    max-width: 20%;
+    filter: invert(1);
+    transition: 0.5s;
+
+    &:hover {
+      filter: invert(0);
+    }
+  }
+}
+
+.player-one__character-display {
+  max-height: 280px;
+  max-width: 280px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.player-two__character-display {
+  @extend .player-one__character-display;
+}
+
+.player-one {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  &__sprite {
+    padding: 20px;
+    max-height: 280px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    // background-color: rgba(0,0,0,0.7);
+    // backdrop-filter: blur(8px);
+    animation: pulse 3s ease-in 0s infinite normal forwards;
+
+    &--flipped {
+      @extend .player-one__sprite;
+      transform: scaleX(-1);
+    }
+  }
+  &__input {
+    font-family: pretendo;
+    font-size: 1.2rem;
+    width: 20rem;
+    margin: 2.5rem 0 1.5rem;
+    padding: 8px 12px;
+    border: 4px solid red;
+    border-radius: 24px;
+    text-align: center;
+    outline: none;
+    transition: 0.5s;
+
+    &:hover {
+      background-color: rgb(150, 150, 150);
+    }
+    &:focus {
+    }
+    &::placeholder {
+      color: red;
+      text-align: center;
+    }
+  }
+  &__selections {
+    display: inline-flex;
+    background-color: rgb(230, 230, 230);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    // align-content: space-around;
+    max-width: 420px;
+    width: 100%;
+    width: 420px;
+    height: 205px;
+    padding: 4px 0;
+    border-radius: 4px;
+    overflow-y: scroll;
+  }
+  &__option {
+    max-height: 96px;
+    max-width: 96px;
+    // background-color: rgb(254, 199, 53);
+    background-color: rgb(254, 164, 53);
+    border-radius: 4px;
+    transition: 0.5s;
+    margin: 4px;
+    &--flipped {
+      @extend .player-one__option;
+      transform: scaleX(-1);
+    }
+    &--active {
+      @extend .player-one__option;
+      border: 4px solid red;
+    }
+    &:hover {
+      cursor: crosshair;
+      background-color: rgb(182, 116, 36);
+    }
+  }
+}
+
+.button {
+  // height: 5vh;
+  font-family: pretendo;
+  color: red;
+  background-color: black;
+  letter-spacing: 0.15rem;
+  font-size: 1.5rem;
+  padding: 6px 18px;
+  border-width: 2px;
+  border: 5px solid rgb(115, 115, 115);
+  border-radius: 22px;
+  overflow: hidden;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.selection-music {
+  position: absolute;
+}

@@ -1,0 +1,94 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>HELLO</h1>
+    <script src="../scripts/battle.js"></script>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link href="../styles/fight.css" rel="stylesheet" />
+    <title>Fight!</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <main class="console">
+      <div class="console__left-buttons"></div>
+      <div class="console__screen">
+        <div class="battle">
+          <div class="battle__player">
+            <div class="battle__stat battle__stat--left">
+              <p id="playerOneName">Name placeholder</p>
+              <div class="battle__hp" id="playerOneHP"></div>
+              <div id="playerOneCups" class="battle__cups"></div>
+            </div>
+            <img
+              src="../assets/pkBack.png"
+              alt=""
+              class="battle__sprite"
+              id="playerOneSprite"
+            />
+            <img
+              src="../assets/bubbles4.gif"
+              alt=""
+              class="battle__no-hit"
+              id="playerOneBubbles"
+            />
+          </div>
+          <div class="battle__player battle__player--two">
+            <img
+              src="../assets/pkFront.png"
+              alt=""
+              class="battle__sprite battle__sprite--right"
+              id="playerTwoSprite"
+            />
+            <img
+              src="../assets/bubbles4.gif"
+              alt=""
+              class="battle__no-hit"
+              id="playerTwoBubbles"
+            />
+            <div class="battle__stat battle__stat--right">
+              <p id="playerTwoName">Name placeholder</p>
+              <div class="battle__hp" id="playerTwoHP"></div>
+              <div id="playerTwoCups" class="battle__cups"></div>
+            </div>
+          </div>
+        </div>
+        <div class="game-prompt">
+          <div class="game-prompt__message">
+            <p>this prompt is a placeholder - replace with text in js</p>
+          </div>
+          <div class="game-prompt__options">
+            <div class="game-prompt__option-one">
+              <img src="../assets/drink.png" />
+              <p id="drinkOne">drink option 1</p>
+            </div>
+            <div class="game-prompt__option-two">
+              <img src="../assets/drink.png" />
+              <p id="drinkTwo">drink option 2</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="console__right-buttons"></div>
+    </main>
+    <script src="../scripts/battle.js"></script>
+  </body>
+</html>

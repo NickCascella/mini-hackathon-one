@@ -1,0 +1,213 @@
+@use "./partials/mixins" as *;
+@use "./partials/keyframes" as *;
+
+body {
+  background: #f9c854;
+  margin: 0;
+  font-family: "Press Start 2P", Verdana, sans-serif;
+  line-height: 2rem;
+}
+
+.console {
+  background-image: url(../assets/gb1.svg);
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__screen {
+    width: 50vw;
+    height: 41vw;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.battle {
+  background-image: url(../assets/battle-background.png);
+  background-size: contain;
+  width: 100%;
+  height: 70%;
+  display: flex;
+
+  &__player {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &--two {
+      justify-items: flex-end;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+  }
+
+  &__stat {
+    width: 90%;
+    min-height: 25%;
+    background-color: lightgrey;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    z-index: 10;
+
+    &--left {
+      border-radius: 0 20px 20px 0;
+      margin-top: 15px;
+    }
+
+    &--right {
+      border-radius: 20px 0 0 20px;
+      margin-bottom: 15px;
+      align-items: flex-end;
+    }
+
+    p {
+      margin: 10px;
+    }
+  }
+
+  &__hp {
+    width: 100%;
+    height: 15px;
+    border-radius: 7px;
+    background-color: green;
+
+    &--medium {
+      background-color: orange;
+    }
+
+    &--low {
+      background-color: red;
+    }
+  }
+
+  &__hit {
+    position: absolute;
+    bottom: 70%;
+    right: 30%;
+    max-width: 30%;
+  }
+
+  &__no-hit {
+    display: none;
+  }
+
+  &__cups {
+    display: flex;
+    margin-top: 15px;
+
+    img {
+      width: 20px;
+    }
+  }
+
+  &__sprite {
+    height: 80%;
+    animation: initalBobbing 2s infinite linear;
+  }
+}
+
+.game-prompt {
+  display: flex;
+  width: 100%;
+  height: 30%;
+  position: relative;
+
+  &__message {
+    background-color: lightgray;
+    border: 5px solid yellow;
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 40%;
+    height: 95%;
+    margin: 5px;
+    padding: 0 10px;
+
+    &--player-two {
+      position: relative;
+      left: 60%;
+    }
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--player-two {
+      position: relative;
+      right: 41%;
+    }
+
+    img {
+      height: 60%;
+      margin-right: 10px;
+    }
+  }
+
+  &__option-one {
+    // background-color: blue;
+    background: rgb(37, 154, 145);
+    background: linear-gradient(
+      0deg,
+      rgba(37, 154, 145, 1) 0%,
+      rgba(9, 42, 121, 1) 61%,
+      rgba(0, 212, 255, 1) 100%
+    );
+    border: 4px solid white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 45%;
+    margin: 5px;
+    padding: 0 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  &__option-two {
+    // background-color: blue;
+    background: rgb(223, 207, 207);
+    background: linear-gradient(
+      0deg,
+      rgba(223, 207, 207, 1) 0%,
+      rgba(238, 67, 67, 1) 34%,
+      rgba(230, 176, 242, 1) 100%
+    );
+    border: 4px solid white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 45%;
+    margin: 5px;
+    padding: 0 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@keyframes initalBobbing {
+  0% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
