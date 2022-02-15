@@ -182,23 +182,27 @@ body {
   font-family: "Press Start 2P", Verdana, sans-serif;
   line-height: 2rem;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 
 .console {
   background-image: url(../assets/gb1.svg);
   background-size: cover;
   background-position: center;
   padding: 50px;
-  width: 100vw;
-  min-height: 100vh;
+  width: 90vw;
+  min-height: 90vh;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 60px;
 }
 .console__screen {
   position: relative;
-  width: 50vw;
-  height: 41vw;
+  width: 45vw;
+  height: 40vw;
   display: flex;
   flex-direction: column;
 }
@@ -224,6 +228,9 @@ body {
   margin: 0;
   font-size: 3rem;
 }
+.console .game-over__message--center {
+  text-align: center;
+}
 .console .game-over__link {
   color: red;
   background-color: black;
@@ -242,9 +249,10 @@ body {
   width: max-content;
   text-decoration: none;
   margin: 0 auto;
-  transition: color 0.3s;
+  transition: 0.3s;
 }
 .console .game-over__link:hover {
+  border-color: red;
   cursor: pointer;
   color: white;
 }
@@ -413,6 +421,11 @@ body {
   align-items: center;
 }
 
-.iframe {
-  z-index: -11;
+.selection-music {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  height: 2rem;
+  width: 2rem;
+  display: none;
 }/*# sourceMappingURL=fight.css.map */

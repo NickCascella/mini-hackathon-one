@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <div class="intro">
+      <img class="intro__image" src="/assets/image.png" />
+    </div>
     <div class="background">
       <!-- <img class="background__top" src="/assets/background-top.jpg" alt=""> -->
       <div class="player-selector">
@@ -112,7 +115,10 @@
                 placeholder="SELECT YOUR POKEMON"
               />
             </form>
-            <div id="playerTwoSelect" class="player-one__selections">
+            <div
+              id="playerTwoSelect"
+              class="player-one__selections player-two__character-display"
+            >
               <img
                 class="player-one__option"
                 src="/assets/pikachu.png"
@@ -166,6 +172,7 @@
       src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/211842576&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
     ></iframe>
     <div
+      class="selection-music"
       style="
         font-size: 10px;
         color: #cccccc;
@@ -198,33 +205,3 @@
     <script src="./scripts/index.js"></script>
   </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link href="./styles/index.css" rel="stylesheet" />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  </head>
-  <body>
-    Player 1
-    <form class="formOne">
-      <input type="text" class="formOne__search" name="formOne__search" />
-    </form>
-    <div class="test"></div>
-    Player 2
-    <form class="formTwo">
-      <input type="text" class="formTwo__search" name="formTwo__search" />
-    </form>
-    <button class="startBattle">Ready!</button>
-    <div class="playerOneSelection-main"></div>
-
-    <div class="playerOneSelect-container"></div>
-    <div class="playerTwoSelection-main"></div>
-    <div class="playerTwoSelect-container"></div>
-    <script src="./scripts/index.js"></script>
-  </body>
-</html> -->

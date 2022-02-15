@@ -15,7 +15,9 @@
   </head>
   <body>
     <main class="console">
-      <div class="console__left-buttons"></div>
+      <div class="console__left-buttons">
+        <img src="../assets/buttonsArrows.svg" />
+      </div>
 
       <div class="console__screen">
         <div class="game-over">
@@ -25,14 +27,14 @@
         <div class="battle">
           <div class="battle__player">
             <div class="battle__stat battle__stat--left">
-              <p id="playerOneName">Name placeholder</p>
+              <p id="playerOneName">???</p>
               <div class="battle__hp-wrapper">
                 <div class="battle__hp" id="playerOneHP"></div>
               </div>
               <div id="playerOneCups" class="battle__cups"></div>
             </div>
             <img
-              src="../assets/pkBack.png"
+              src="../assets/icognito.svg"
               alt=""
               class="battle__sprite"
               id="playerOneSprite"
@@ -46,7 +48,7 @@
           </div>
           <div class="battle__player battle__player--two">
             <img
-              src="../assets/pkFront.png"
+              src="../assets/icognito.svg"
               alt=""
               class="battle__sprite battle__sprite--right"
               id="playerTwoSprite"
@@ -58,7 +60,7 @@
               id="playerTwoBubbles"
             />
             <div class="battle__stat battle__stat--right">
-              <p id="playerTwoName">Name placeholder</p>
+              <p id="playerTwoName">???</p>
               <div class="battle__hp-wrapper">
                 <div class="battle__hp" id="playerTwoHP"></div>
               </div>
@@ -68,7 +70,7 @@
         </div>
         <div class="game-prompt">
           <div class="game-prompt__message">
-            <p>this prompt is a placeholder - replace with text in js</p>
+            <p>???</p>
           </div>
           <div class="game-prompt__options">
             <div class="game-prompt__option-one">
@@ -82,18 +84,16 @@
           </div>
         </div>
       </div>
-      <div class="console__right-buttons"></div>
+      <div class="console__right-buttons">
+        <img src="../assets/buttonsAB.svg" />
+      </div>
     </main>
     <script src="../scripts/battle.js"></script>
-    <!-- <iframe
-      class="iframe"
-      width="1"
-      height="1"
-      scrolling="no"
-      frameborder="no"
+    <iframe
+      class="selection-music"
       allow="autoplay"
       src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/213214227&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-    ></iframe> -->
+    ></iframe>
     <div
       style="
         font-size: 10px;

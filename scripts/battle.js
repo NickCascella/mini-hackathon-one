@@ -67,7 +67,7 @@ const attack = () => {
       if (secondPlayerData.health < 25) {
         playerTwoHP.classList.add("battle__hp--low");
       }
-      if (secondPlayerData.health < 0) {
+      if (secondPlayerData.health <= 0) {
         secondPlayerData.health = 0;
         setTimeout(() => {
           gameOverScreen.style.display = "flex";
@@ -75,7 +75,7 @@ const attack = () => {
       }
       playerTwoHP.style.width = `${secondPlayerData.health}%`;
       firstPlayerData.moves = generateMoves(firstPlayerData.allDrinks);
-      setTurn();
+      setTurn(secondPlayerData);
     }, 1300);
   } else {
     playerTwoBubbles.classList.remove("battle__no-hit");
@@ -98,7 +98,7 @@ const attack = () => {
       if (firstPlayerData.health < 25) {
         playerOneHP.classList.add("battle__hp--low");
       }
-      if (firstPlayerData.health < 0) {
+      if (firstPlayerData.health <= 0) {
         firstPlayerData.health = 0;
         setTimeout(() => {
           gameOverScreen.style.display = "flex";
@@ -106,12 +106,12 @@ const attack = () => {
       } //need to define win
       playerOneHP.style.width = `${firstPlayerData.health}%`;
       secondPlayerData.moves = generateMoves(secondPlayerData.allDrinks);
-      setTurn();
+      setTurn(firstPlayerData);
     }, 1300);
   }
 };
 
-const setTurn = () => {
+const setTurn = (player) => {
   if (turn % 2 !== 0) {
     turn++;
     leftPokemonSprite.src = firstPlayerData.pokemon.sprites.back_default;
@@ -134,6 +134,11 @@ const setTurn = () => {
     promptMessageBox.classList.add("game-prompt__message--player-two");
     promptAttacksBox.classList.add("game-prompt__options--player-two");
     promptMessageBox.innerText = `${secondPlayerPokemonName} choose drinks!`;
+  }
+  if (player.health <= 0) {
+    promptMessageBox.innerText = `${
+      player.pokemon.name[0].toUpperCase() + player.pokemon.name.substring(1)
+    } passed out...!`;
   }
 };
 
@@ -215,3 +220,9 @@ initializaPlayers(
   secondPlayerPokemonName,
   secondPlayerData
 );
+
+document
+  .querySelector(".console__right-buttons")
+  .addEventListener("click", () => {
+    attack();
+  });
