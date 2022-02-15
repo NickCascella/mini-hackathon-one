@@ -129,7 +129,7 @@ const renderMainChoice = (playerMainSelection, playerPokemonOptions) => {
   );
   playerOneChoice.src = playerPokemonOptions[0]
     ? playerPokemonOptions[0].sprites.other["official-artwork"].front_default
-    : "../assets/unknownPokemon.png";
+    : "../assets/icognito.svg";
   playerOneChoice.setAttribute(
     "alt",
     `${

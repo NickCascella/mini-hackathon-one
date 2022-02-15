@@ -1,86 +1,7 @@
-// const queryString = window.location.search;
-// const urlParams = new URLSearchParams(queryString);
-// const firstPlayerPokemonName = urlParams.get("firstPlayerPokemon");
-// const secondPlayerPokemonName = urlParams.get("secondPlayerPokemon");
-// const firstPlayerData = {
-//   name: "Player One",
-//   pokemon: {},
-//   moves: {},
-//   allDrinks: [],
-// };
-// const secondPlayerData = {
-//   name: "Player Two",
-//   pokemon: {},
-//   moves: {},
-//   allDrinks: [],
-// };
-
-// const generateMoves = (drinkOptions) => {
-//   const getDrink = () => {
-//     return Math.floor(Math.random() * drinkOptions.length);
-//   };
-//   let firstMove = drinkOptions[getDrink()].strDrink;
-//   let secondMove = drinkOptions[getDrink()].strDrink;
-//   secondMove === firstMove
-//     ? (secondMove = drinkOptions[getDrink()].strDrink)
-//     : null;
-//   return { firstMove, secondMove };
-// };
-
-// const getDrinks = (pokemonName, playerObj) => {
-//   axios
-//     .get(
-//       `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${pokemonName[0]}`
-//     )
-//     .then((allDrinks) => {
-//       const allDrinksArray = allDrinks.data.drinks;
-//       playerObj.allDrinks = allDrinksArray;
-//       playerObj.moves = generateMoves(allDrinksArray);
-//     })
-//     .catch((err) => err);
-// };
-
-// const getPokemon = (pokemon, playerObj) => {
-//   axios
-//     .get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-//     .then((response) => {
-//       playerObj.pokemon = response.data;
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
-
-// const initializaPlayers = (
-//   firstPlayerPokemonName,
-//   firstPlayer,
-//   secondPlayerPokemonName,
-//   secondPlayer
-// ) => {
-//   Promise.all([
-//     getPokemon(firstPlayerPokemonName, firstPlayer),
-//     getDrinks(firstPlayerPokemonName, firstPlayer),
-//     getPokemon(secondPlayerPokemonName, secondPlayer),
-//     getDrinks(secondPlayerPokemonName, secondPlayer),
-//   ]).then(() => {
-//     console.log("render them all", firstPlayerData, secondPlayerData);
-
-//     //START RENDERING PLAYER TWO STUFF HERE
-//   });
-// };
-
-// initializaPlayers(
-//   firstPlayerPokemonName,
-//   firstPlayerData,
-//   secondPlayerPokemonName,
-//   secondPlayerData
-// );
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const firstPlayerPokemonName = urlParams.get("firstPlayerPokemon");
 const secondPlayerPokemonName = urlParams.get("secondPlayerPokemon");
-// const firstPlayerPokemonName = "pikachu";
-// const secondPlayerPokemonName = "charmander";
 const firstPlayerData = {
   name: "Player One",
   pokemon: {},
@@ -116,6 +37,7 @@ let playerOneCups = document.getElementById("playerOneCups");
 let playerTwoCups = document.getElementById("playerTwoCups");
 let cup = [];
 let turn = 1;
+let gameOverScreen = document.querySelector(".game-over");
 
 document
   .querySelector(".game-prompt__options")
@@ -124,7 +46,7 @@ document
   });
 
 const attack = () => {
-  if (turn % 2 !== 0) {
+  if (turn % 2 === 0) {
     playerTwoBubbles.classList.remove("battle__no-hit");
     playerTwoBubbles.classList.add("battle__hit");
     promptMessageBox.innerText = `bottoms up!`;
@@ -141,12 +63,16 @@ const attack = () => {
       secondPlayerData.health -= hit;
       if (secondPlayerData.health < 50) {
         playerTwoHP.classList.add("battle__hp--medium");
-      } //need to add drunk effect
+      }
       if (secondPlayerData.health < 25) {
         playerTwoHP.classList.add("battle__hp--low");
-      } //need to add drunk effect
+      }
       if (secondPlayerData.health < 0) {
-      } //need to define win
+        secondPlayerData.health = 0;
+        setTimeout(() => {
+          gameOverScreen.style.display = "flex";
+        }, 3000);
+      }
       playerTwoHP.style.width = `${secondPlayerData.health}%`;
       firstPlayerData.moves = generateMoves(firstPlayerData.allDrinks);
       setTurn();
@@ -168,11 +94,15 @@ const attack = () => {
       firstPlayerData.health -= hit;
       if (firstPlayerData.health < 50) {
         playerOneHP.classList.add("battle__hp--medium");
-      } //need to add drunk effect
+      }
       if (firstPlayerData.health < 25) {
         playerOneHP.classList.add("battle__hp--low");
-      } //need to add drunk effect
+      }
       if (firstPlayerData.health < 0) {
+        firstPlayerData.health = 0;
+        setTimeout(() => {
+          gameOverScreen.style.display = "flex";
+        }, 3000);
       } //need to define win
       playerOneHP.style.width = `${firstPlayerData.health}%`;
       secondPlayerData.moves = generateMoves(secondPlayerData.allDrinks);
@@ -186,6 +116,8 @@ const setTurn = () => {
     turn++;
     leftPokemonSprite.src = firstPlayerData.pokemon.sprites.back_default;
     rightPokemonSprite.src = secondPlayerData.pokemon.sprites.front_default;
+    assignAnimation(leftPokemonSprite, firstPlayerData.health);
+    assignAnimation(rightPokemonSprite, secondPlayerData.health);
     firstDrink.innerText = firstPlayerData.moves.firstMove;
     secondDrink.innerText = firstPlayerData.moves.secondMove;
     promptMessageBox.classList.remove("game-prompt__message--player-two");
@@ -195,11 +127,31 @@ const setTurn = () => {
     turn++;
     leftPokemonSprite.src = secondPlayerData.pokemon.sprites.back_default;
     rightPokemonSprite.src = firstPlayerData.pokemon.sprites.front_default;
+    assignAnimation(rightPokemonSprite, firstPlayerData.health);
+    assignAnimation(leftPokemonSprite, secondPlayerData.health);
     firstDrink.innerText = secondPlayerData.moves.firstMove;
     secondDrink.innerText = secondPlayerData.moves.secondMove;
     promptMessageBox.classList.add("game-prompt__message--player-two");
     promptAttacksBox.classList.add("game-prompt__options--player-two");
     promptMessageBox.innerText = `${secondPlayerPokemonName} choose drinks!`;
+  }
+};
+
+const assignAnimation = (sprite, health) => {
+  sprite.classList.remove("battle__sprite--start-drinking");
+  sprite.classList.remove("battle__sprite--middle-drinking");
+  sprite.classList.remove("battle__sprite--late-drinking");
+  if (health < 80) {
+    sprite.classList.add("battle__sprite--start-drinking");
+  }
+  if (health < 65) {
+    sprite.classList.add("battle__sprite--middle-drinking");
+  }
+  if (health < 35) {
+    sprite.classList.add("battle__sprite--late-drinking");
+  }
+  if (health <= 0) {
+    sprite.classList.add("battle__sprite--passed-out");
   }
 };
 
@@ -263,5 +215,3 @@ initializaPlayers(
   secondPlayerPokemonName,
   secondPlayerData
 );
-
-// firstPlayerData.moves = generateMoves(firstPlayerData.allDrinks)

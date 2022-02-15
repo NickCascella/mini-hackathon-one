@@ -134,8 +134,9 @@ body {
     overflow-y: scroll;
   }
   &__option {
-    max-height: 96px;
-    max-width: 96px;
+    max-height: 90px;
+    max-width: 90px;
+    width: 100%;
     // background-color: rgb(254, 199, 53);
     background-color: rgb(254, 164, 53);
     border-radius: 4px;

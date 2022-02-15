@@ -149,8 +149,9 @@ body {
   overflow-y: scroll;
 }
 .player-one__option, .player-one__option--active, .player-one__option--flipped {
-  max-height: 96px;
-  max-width: 96px;
+  max-height: 90px;
+  max-width: 90px;
+  width: 100%;
   background-color: #fea435;
   border-radius: 4px;
   transition: 0.5s;
